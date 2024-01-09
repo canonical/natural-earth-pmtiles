@@ -1,0 +1,59 @@
+# Configuration for tiles generation
+
+source_base_url: "https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/"  # Base URL for data download
+
+# List of layers to be processed
+layers:
+  - name: "ne_10m_admin_0_boundary_lines_land" # Name of the source layer
+    type: "cultural" # Type of the layer (cultural or physical)
+    start_zoom: 0
+    end_zoom: 2
+    output_name: "border" # Output name for the layer
+    params: "--coalesce-densest-as-needed --simplification=10"  # Parameters for the tippecanoe command
+    tile_join_params: "--overzoom"  # Parameters for the tile-join command, overzoom ensures that the layer is visible on all zoom levels
+
+  - name: "ne_10m_admin_1_states_provinces"
+    type: "cultural"
+    start_zoom: 5
+    end_zoom: "g"
+    output_name: "state"
+    params: "--coalesce-densest-as-needed --simplification=10"
+    tile_join_params: "--overzoom"
+
+  - name: "ne_10m_land"
+    type: "physical"
+    start_zoom: 0
+    end_zoom: "g"
+    output_name: "land"
+    params: "--coalesce-densest-as-needed --simplification=10"
+    tile_join_params: "--overzoom"
+
+  - name: "ne_10m_rivers_lake_centerlines_scale_rank"
+    type: "physical"
+    start_zoom: 0
+    end_zoom: "g"
+    output_name: "river"
+    params: "--coalesce-densest-as-needed --simplification=10"
+    tile_join_params: "--overzoom"
+
+  - name: "ne_10m_lakes"
+    type: "physical"
+    start_zoom: 0
+    end_zoom: 5
+    output_name: "lake"
+    params: "--coalesce-densest-as-needed --simplification=10"
+
+  - name: "ne_10m_populated_places"
+    type: "cultural"
+    start_zoom: 3
+    end_zoom: "g"
+    output_name: "city"
+    params: "--coalesce-densest-as-needed --simplification=10"
+    tile_join_params: "--overzoom"
+
+  - name: "ne_10m_admin_0_label_points"
+    type: "cultural"
+    start_zoom: 0
+    end_zoom: 2
+    output_name: "country"
+    params: "--coalesce-densest-as-needed --simplification=10"
